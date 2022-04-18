@@ -1,0 +1,88 @@
+
+
+<!doctype html>
+<html lang="en">  
+  <body>
+    
+    <nav class="navbar navbar-dark bg-mynav">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Manage Employee</a>
+        
+      </div>
+    </nav>
+
+    <div class="main-h1">
+<div class="back">
+		<h1 class="h1">Edit Employee</h1>
+      <hr>
+		<div class="main-agileinfo">
+		
+			<form action="/edit/{{Employee.EId}}" method="post" enctype="multipart/form-data">
+      {{!-- <img class="Update_Image" src={{Employee.Profile}} alt=""> --}}
+    		<div class="profile-header-img">
+                <img class="img-circle" src={{Employee.Profile}} />  
+                
+        </div>
+        <div id="selectedBanner"></div>
+            <input type="file" name="image" />
+            <input type="text" name="Name" placeholder="Enter Name" value={{Employee.Name}} />
+            <input type="text" name="Email" placeholder="Enter Email" value={{Employee.Email}} />
+            <input type="text" name="Mobile_No" placeholder="Enter Mobile_No"  value={{Employee.Mobile_No}}  />
+            <div class="w3-container">
+                  <div class="w3-show-inline-block">
+                     <div type="submit"  class="btn-group">
+                        <button>Update</button>
+                        
+                     <a href="/" class="Cancel_btn">Cancel</a>
+                      </div>
+                    </div>
+  </div>
+
+</div>
+ 
+  </div>
+  </div>
+      </form>			
+			</div>
+		
+    </div>
+     <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var selDiv = "";
+      var storedFiles = [];
+      $(document).ready(function () {
+        $("#img").on("change", handleFileSelect);
+        selDiv = $("#selectedBanner");
+      });
+
+      function handleFileSelect(e) {
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+        filesArr.forEach(function (f) {
+          if (!f.type.match("image.*")) {
+            return;
+          }
+          storedFiles.push(f);
+
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            var html =
+              '<img src="' +
+              e.target.result +
+              "\" data-file='" +
+              f.name +
+              "' class='avatar rounded lg' alt='Category Image' height='200px' width='200px'>";
+            selDiv.html(html);
+          };
+          reader.readAsDataURL(f);
+         
+        });
+      }
+    </script> 
+
+  </body>
+</html>

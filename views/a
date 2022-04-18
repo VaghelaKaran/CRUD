@@ -1,0 +1,94 @@
+
+{{!-- <div class="container">
+  <h1>{{title}}</h1>
+  <hr />
+  <div class="row">
+    <div class="col-md-6">
+      <form action="/edit/{{Employee.EId}}" method="post">
+          <div class="form-group">
+              <input type="text" name="Name" class="form-control" value={{Employee.Name}} placeholder="Name" />
+          </div>
+          <div class="form-group">
+              <input type="text" name="Email" class="form-control" value={{Employee.Email}} placeholder="Email" />
+          </div>
+          <div class="form-group">
+              <input type="text" name="Mobile_No" class="form-control" value={{Employee.Mobile_No}} placeholder="Mobile_No" />
+          </div>
+          <div class="form-group">
+              <button class="btn btn-info">Save Detail</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div> --}}
+
+
+<!doctype html>
+<html lang="en">  
+  <body>
+    
+    <nav class="navbar navbar-dark bg-mynav">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Manage Employee</a>
+        
+      </div>
+    </nav>
+
+    <div class="main-h1">
+<div class="back">
+		<h1 class="h1">Edit Employee</h1>
+      <hr>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+			<form action="/edit/{{Employee.EId}}" method="post" enctype="multipart/form-data">
+      <img class="Update_Image"  src={{Employee.Profile}} alt=""/>
+  {{!-- <div id="selectedBanner"></div> --}}
+            <input type="file" name="image" >
+            <input type="text" name="Name" placeholder="Enter Name" value={{Employee.Name}} />
+            <input type="text" name="Email" placeholder="Enter Email" value={{Employee.Email}} />
+            <input type="text" name="Mobile_No" placeholder="Enter Mobile_No"  value={{Employee.Mobile_No}}  />
+            <button type="submit" class="registerbtn">Submit</button>
+      </form>			
+			</div>
+		</div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var selDiv = "";
+      var storedFiles = [];
+      $(document).ready(function () {
+        $("#img").on("change", handleFileSelect);
+        selDiv = $("#selectedBanner");
+      });
+
+      function handleFileSelect(e) {
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+        filesArr.forEach(function (f) {
+          if (!f.type.match("image.*")) {
+            return;
+          }
+          storedFiles.push(f);
+
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            var html =
+              '<img src="' +
+              e.target.result +
+              "\" data-file='" +
+              f.name +
+              "' class='avatar rounded lg' alt='Category Image' height='200px' width='200px'>";
+            selDiv.html(html);
+          };
+          reader.readAsDataURL(f);
+          console.log("fileis"+ reader)
+        });
+      }
+    </script> 
+
+  </body>
+</html>

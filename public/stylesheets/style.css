@@ -1,0 +1,15 @@
+.bg-mynav {
+  background-color: #2c3e50;
+  
+}
+
+body {
+  font-size: 1.25rem;
+  background-color: hsl(210, 29%, 97%);
+  text-align: center;
+  
+}
+
+td {
+    line-height: 3rem;
+}
